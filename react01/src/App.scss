@@ -40,3 +40,23 @@
 .red {
   color: rgb(255, 129, 129);
 }
+.card {
+  .card-header {
+    background-color: rgb(44, 15, 111);
+    h2{
+      color: aquamarine;
+    }
+
+  }
+  li {
+    color: burlywood;
+    background-color: #630f2b90;
+    &.big {
+      letter-spacing: 7px;
+      // &__super {
+      //   letter-spacing: 2px;
+      // }
+    }
+
+  }
+}
