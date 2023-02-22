@@ -49,6 +49,7 @@
 
   }
   li {
+    position: relative;
     color: burlywood;
     background-color: #630f2b90;
     &.big {
@@ -60,4 +61,23 @@
 
   }
 
+}
+
+.del-button {
+position: absolute;
+right: 5px;
+top: 5px;
+&::after{
+  content: '\2620';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+}
 }
