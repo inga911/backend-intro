@@ -6,11 +6,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-
-        <Bebras backgroundColor="skyblue" lt="2px"  name="Minkstasis"/>
-        <Bebras backgroundColor="greenyellow"  lt="-2px"  name="Ponas"/>
-        <Bebras  lt="10px" name="Rudasis" />
-  
+      
+        <Bebras />
+        <Bebras />
+        <Bebras backgroundColor="white" lt="8px"/>
 
       </header>
     </div>

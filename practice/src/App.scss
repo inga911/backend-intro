@@ -1,0 +1,109 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spalva {
+  color: brown;
+  background-color: rgb(241, 166, 129);
+  border-radius: 1em;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #282c3420;
+  border: 1.5px solid lightgreen;
+  border-radius: 1em;
+  padding: 5px 10px;
+  color: aliceblue;
+  font-size: 20px;
+}
+
+.card {
+  margin-bottom: 10px;
+  h2{
+    color: darkblue;
+  }
+  .card-header {
+    background-color: #838fa742;
+  }
+  li{
+    position: relative;
+    color: darkcyan;
+    &.old {
+      letter-spacing: 9px;
+    }
+  }
+  label{
+    color: #f1622a;
+  }
+}
+.del-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  &::after{
+    content: '\2620';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: rgb(235, 30, 71);
+    color: white;
+    cursor: pointer;
+  }
+}
+.ed-button {
+  position: absolute;
+  right: 45px;
+  top: 5px;
+  &::after {
+      content: '\2692';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      border-radius: 50%;
+      background-color: darkcyan;
+      color: white;
+      cursor: pointer;
+  }
+}
