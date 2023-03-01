@@ -21,7 +21,7 @@ function App() {
     setH2Color((c) => (c === "orange" ? "darkblue" : "orange")); //callback | spaudinejant click me keiciasi spalvos
   };
   const add1 = () => {
-    // setCount(++count) --> keicis pacia reiksme
+    // setCount(++count) --> keicia pacia reiksme
     // setCount(count + 1); --> veiktu nesinchroniskai
     setCount((c) => c + 1); //callback | prie senojo count pridedam 1 ir tada pasilieka naujoji reiksme
   };

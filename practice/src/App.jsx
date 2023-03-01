@@ -1,43 +1,75 @@
+// 006crud.jsx
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import './App.scss';
-import axios from 'axios';
+import Create from './Components/006/Create';
+import Edit from './Components/006/Edit';
+import List from './Components/006/List';
+import { create, destroy, edit, read } from './Functions/localStorage';
 
+const KEY = 'whishList';
 
 function App() {
 
+    const [list, setList] = useState(null);
+    const [lastRefresh, setLastRefresh] = useState(Date.now());
+    const [createData, setCreateData] = useState(null);
+    const [deleteData, setDeleteData] = useState(null);
+    const [modalData, setModalData] = useState(null);
+    const [editData, setEditData] = useState(null);
 
-    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res => {
-            // console.log(res.data);
-            setUsers(res.data.map((u, i) =>({...u, row: i})));
-        });
-    })
+        // loadingo imitacija
+        // setTimeout(() => setList(read(KEY)), 1000);
+        // be imitacijos
+        setList(read(KEY));
+    }, [lastRefresh]);
 
-    const sort = () => {
-        setUsers(u => [...u].sort((a, b) => a.name.localeCompare(b.name)));
-    }
-    const sortBack = () => {
-        setUsers(u => [...u].sort((a, b) => a.row - b.row));
-    }
+    useEffect(() => {//stebima create data pokytis
+        if (null === createData) {//atrasti vieta kada nieko nereikia daryti
+            return;
+        }
+        create(KEY, createData);//i key dedam wishlista 
+        setLastRefresh(Date.now())
+    }, [createData]);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Users List</h1>
-        <ul>
-            {
-                users ? users.map(u => <li key={u.id}>{u.name}</li>) : <li>LOADING...</li>
-            }
-        </ul>
-        <button className='btn btn-outline-primary m-4' onClick={sort}>Sort</button>
-        <button className='btn btn-outline-primary m-4' onClick={sortBack}>Sort</button>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        if (null === deleteData) {
+            return;
+        }
+        // tipo klientas
+        setList(l => l.filter(d => deleteData.id !== d.id));
+
+        // tipo serverio | kaip promisas, refresinus narsykle grizta viskas atgal
+        destroy(KEY, deleteData.id);
+        setLastRefresh(Date.now());
+    }, [deleteData]);
+
+    useEffect(() => {
+        if (null === editData) {
+            return;
+        }
+        edit(KEY, editData, editData.id)
+        setLastRefresh(Date.now());
+    }, [editData]);
+
+    return (
+        <>
+            <div className="container">
+                <div className="row">
+                    <div className="col-4">
+                        <Create setCreateData={setCreateData} />
+                    </div>
+                    <div className="col-8">
+                    <List list={list} setDeleteData={setDeleteData} setModalData={setModalData} />
+                </div>
+            </div>
+        </div>
+        <Edit modalData={modalData} setModalData={setModalData} setEditData={setEditData} />
+        </>
+    );
 }
 
 export default App;
