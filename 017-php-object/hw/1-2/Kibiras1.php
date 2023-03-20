@@ -4,10 +4,12 @@ class Kibiras1 {
 
     protected $akmenuKiekis, $numeris;
 
-
-    public function __construct(int $jauYra, int $numeris)
+//__construct nieko negrazina bet jam NEREIKIA RASYTI :void
+    public function __construct(int $jauYra, int $numeris)//neribotas skaicius, galima daug priskirti
     {
+//objekto savybe/kintamasis      //kintamasis   JIE ABU VISISKAI SKIRTINGI
         $this->akmenuKiekis = $jauYra;
+//objekto savybe/kintamasis      //kintamasis   JIE ABU VISISKAI SKIRTINGI
         $this->numeris = $numeris;
     }
 
@@ -16,11 +18,11 @@ class Kibiras1 {
         $this->numeris = 5;
     }
 
-    public function prideti1Akmeni() :void
+    public function prideti1Akmeni() :void //funkcija nieko negrazina rasom :void, jei return skaiciu :int
     {
         $this->akmenuKiekis++;
     }
-
+                         //(deklaracija kas ieina)     :deklaracija kas iseina
     public function pridetiDaugAkmenu(int $kiekis) :void
     {
         $this->akmenuKiekis += $kiekis;

@@ -7,20 +7,6 @@ $k1 = new Kibiras1(200, 5);
 $k2 = new Kibiras1(100, 7);
 $k3 = clone $k2;
 
-
-
-$p = new Pinigine;
-
-$k1->pinigine = $p; // dinamine savybe + priskyrimas pagal ref
-
-$k1->pinigine = clone($p);
-
-// unset($k1->pinigine);
-
-// echo '<pre>';
-
-// var_dump($k1);
-
 $k1->prideti1Akmeni();
 $k1->prideti1Akmeni();
 
@@ -36,8 +22,25 @@ $k2->kiekPririnktaAkmenu();
 $k3->kiekPririnktaAkmenu();
 
 
+$p = new Pinigine;
+
 $p->ideti(1);
 $p->ideti(87.31);
+$p->ideti(0.7);
+$p->ideti(22.1);
+$p->skaiciuoti();
+
+
+$k1->pinigine = $p; // dinamine savybe + priskyrimas pagal ref, matomumas turi buti vienodas
+
+$k1->pinigine = clone($p);
+
+// unset($k1->pinigine);
+
+// echo '<pre>';
+
+// var_dump($k1);
+//galima pinigus kibire rinkti
 $k1->pinigine->ideti(0.7);
 $k1->pinigine->ideti(22.1);
 $k1->pinigine->ideti(1000);
