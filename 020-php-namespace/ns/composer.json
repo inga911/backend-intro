@@ -1,0 +1,15 @@
+{
+    "name": "ingab/ns",
+    "autoload": {
+        "psr-4": {
+            "Ingab\\Ns\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "inga911",
+            "email": "inga.banaityte221@gmail.com"
+        }
+    ],
+    "require": {}
+}
