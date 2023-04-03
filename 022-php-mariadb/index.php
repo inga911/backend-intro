@@ -45,6 +45,19 @@ if (isset($_GET['left'])) {
     ON clients.id = phone.client_id  
     ORDER BY name
     ";
+}else if (isset($_GET['group'])) {
+//palieka visus vardu po viena, nes grupuojam pagal varda
+    $type = 'INNER GROUP';
+//GROUP_CONCAT - sujungia to paties vardo registruotus numerius  | SEPARATOR (tuo kuo norim atskirti)
+    $sql = "
+    SELECT clients.id AS cid, name, phone.id AS pid, client_id, GROUP_CONCAT(number SEPARATOR '<br>') AS number 
+    FROM clients
+    INNER JOIN phone
+    ON clients.id = phone.client_id  
+    GROUP BY name
+    ORDER BY name
+    ";
+    
 } else {
 
     $type = 'INNER';
@@ -76,7 +89,24 @@ $data = $stmt->fetchAll();
 // $stmt = $pdo->query($sql);
 
 // $data = $stmt->fetchAll();
+if (isset($_GET['phpgroup'])) {
+    //tarpinis masyvas i kuri dedame visus elementus
+    $d= [];
+    $type = 'PHP GROUP';
+    foreach ($data as $client){
+        if (isset($d[$client['name']])) {
+            // toks yra jau tai i kliento namo telefono masyva pridedama kito kliento numeri
+            $d[$client['name']]['number'] .= '<br>' . $client['number'];
+        }else {
+            //jeigu ne - pirma karta daroma:
+            //atiduodama viskas klientui
+            $d[$client['name']] = $client;
+        }
 
+    }
+    $data = $d;
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -96,6 +126,8 @@ $data = $stmt->fetchAll();
         <a href="?inner">INNER</a>
         <a href="?left">LEFT</a>
         <a href="?right">RIGHT</a>
+        <a href="?group">GROUP</a>
+        <a href="?phpgroup">GROUP IN PHP</a>
     </nav>
 
     <h1><?= $type ?></h1>
