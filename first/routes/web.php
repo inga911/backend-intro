@@ -41,3 +41,7 @@ Route::post('calc', [C::class, 'doCalc'])->name('do-calc');
 
 Route::get('/sum/{a}/{b?}', [FirstController::class, 'sum']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
