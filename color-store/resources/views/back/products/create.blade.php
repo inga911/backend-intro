@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">Product Category</label>
-                                    <select class="form-select --cat--select" data-url="{{route('products-colors')}}" data-url-name="{{route('products-color-name')}}">
+                                    <select class="form-select --cat--select" name="cat_id" data-url="{{route('products-colors')}}" data-url-name="{{route('products-color-name')}}">
                                         <option value="0">Cats list</option>
                                         @foreach($cats as $cat)
                                         <option value="{{$cat->id}}">{{$cat->title}} ({{$cat->colors_count}})</option>

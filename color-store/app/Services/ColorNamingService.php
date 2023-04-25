@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Http;
 
 class ColorNamingService
 {
-    public function nameIt()
+    public function nameIt($color)
     {
-        // $response = Http::get('https://www.thecolorapi.com/id?hex='.$color);
+        $response = Http::get('https://www.thecolorapi.com/id?hex='.$color);
 
-        // return json_decode($response)->name->value;
-
-        return 'pink sweet';
+        return json_decode($response)->name->value;
         
     }
 }

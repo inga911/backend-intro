@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Color;
 use App\Models\Cat;
 use App\Services\ColorNamingService;
 use Illuminate\Http\Request;
@@ -13,7 +14,11 @@ class ProductController extends Controller
 
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('back.products.index', [
+            'products' => $products
+        ]);
+
     }
 
 
@@ -29,8 +34,6 @@ class ProductController extends Controller
 
     public function colors(Request $request)
     {
-        $html = '<h1>OK</h1>';
-
         $colorsCount = Cat::where('id', $request->cat)->first()->colors_count;
         
         //view priskiriamas kintamajam
@@ -48,14 +51,28 @@ class ProductController extends Controller
     public function colorName(Request $request, ColorNamingService $cns)
     {
         return response()->json([
-            'name' => $cns->nameIt()
+            'name' => $cns->nameIt($request->color)
         ]);
     }
 
 
     public function store(Request $request)
     {
-        //
+        $id = Product::create([
+            'title' => $request->title,
+            'price' => $request->price,
+            'cat_id' => $request->cat_id
+        ])->id;
+
+        foreach($request->color as $index => $color) {
+            Color::create([
+                'title' => $request->name[$index],
+                'hex' => $color,
+                'product_id' => $id
+            ]);
+        }
+
+        return redirect()->back();
     }
 
 
