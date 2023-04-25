@@ -19,14 +19,16 @@
                                                 {{$product->title}}
                                                 <span>{{$product->price}} EUR</span>
                                             </div>
-                                            <div class="buttons">
-                                                <a href="{{route('products-edit', $product)}}" class="btn btn-outline-success">Edit</a>
-                                                <form action="{{route('products-delete', $product)}}" method="post">
-                                                    <button type="submit" class="btn btn-outline-danger">delete</button>
-                                                    @csrf
-                                                    @method('delete')
-                                                </form>
-                                            </div>
+                                            @if(Auth::user()->role < 5)
+                                                <div class="buttons">
+                                                    <a href="{{route('products-edit', $product)}}" class="btn btn-outline-success">Edit</a>
+                                                    <form action="{{route('products-delete', $product)}}" method="post">
+                                                        <button type="submit" class="btn btn-outline-danger">delete</button>
+                                                        @csrf
+                                                        @method('delete')
+                                                    </form>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="colors">
                                             @foreach($product->color as $color)
