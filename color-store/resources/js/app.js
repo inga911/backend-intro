@@ -45,9 +45,9 @@ const addNameEvents = (bin, select) => {
 }
 
 // puslapio krovimo metu
-// if (document.querySelector('.--colors--selectors')) {
-//     addNameEvents(
-//         document.querySelector('.--colors--selectors'),
-//         document.querySelector('.--cat--select')
-//     );
-// }
+if (document.querySelector('.--colors--selectors')) {
+    addNameEvents(
+        document.querySelector('.--colors--selectors'),
+        document.querySelector('.--cat--select')
+    );
+}
