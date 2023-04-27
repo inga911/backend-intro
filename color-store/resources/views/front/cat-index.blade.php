@@ -24,7 +24,11 @@
                                 <a href="{{route('front-show-product', $product)}}"><h2>{{$product->title}}</h2></a>
                                 <div class="buy">
                                     <span>{{$product->price}} eur</span>
-                                    <button type="submit" class="btn btn-primary">add to cart</button>
+                                    <section class="--add--to--cart" data-url="{{route('cart-add')}}">
+                                        <button type="button" class="btn btn-primary">add to cart</button>
+                                        <input type="hidden" name="id" value={{$product->id}}>
+                                        <input type="number" value="1" min="1" name="count">
+                                    </section>                                
                                 </div>
                             </div>
                         </div>
