@@ -16,4 +16,11 @@ class OrderController extends Controller
             'status' => Order::STATUS
         ]);
     }
+    public function update(Request $request, Order $order)
+    {
+        $order->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->route('orders-index');
+    }
 }
